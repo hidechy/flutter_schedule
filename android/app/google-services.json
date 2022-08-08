@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "1082842985559",
+    "project_id": "hideyuki-firebase",
+    "storage_bucket": "hideyuki-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082842985559:android:2822c8e28a9857e7471f12",
+        "android_client_info": {
+          "package_name": "com.example.moneynote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082842985559-60i1bjhd6oq0eeqths85bm30768tqmv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSlSYSeoa9fA43KGdCPov3LtAMeXQZ0BY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082842985559-60i1bjhd6oq0eeqths85bm30768tqmv9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082842985559-s9q0kuu3plfs45oi6659e84kc8u73jdj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.moneynote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1082842985559:android:3fc5562c1d27d170471f12",
+        "android_client_info": {
+          "package_name": "com.example.schedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1082842985559-60i1bjhd6oq0eeqths85bm30768tqmv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSlSYSeoa9fA43KGdCPov3LtAMeXQZ0BY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1082842985559-60i1bjhd6oq0eeqths85bm30768tqmv9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1082842985559-s9q0kuu3plfs45oi6659e84kc8u73jdj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.moneynote"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

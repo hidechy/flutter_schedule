@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1082842985559-m70tbgrl995almhbmeaqs6l2io130e99.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1082842985559-m70tbgrl995almhbmeaqs6l2io130e99</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB-N8lZNZRZl5PCVMAhxTkA_edocgPYm7Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1082842985559</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.schedule</string>
+	<key>PROJECT_ID</key>
+	<string>hideyuki-firebase</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hideyuki-firebase.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1082842985559:ios:40ba93032b9fbef0471f12</string>
+</dict>
+</plist>
