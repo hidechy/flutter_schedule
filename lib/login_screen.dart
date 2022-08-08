@@ -2,8 +2,11 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginScreen extends StatelessWidget {
+import 'view_model/login_view_model.dart';
+
+class LoginScreen extends ConsumerWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   TextEditingController emailController = TextEditingController(
@@ -14,11 +17,13 @@ class LoginScreen extends StatelessWidget {
   );
 
   late BuildContext _context;
+  late WidgetRef _ref;
 
   ///
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     _context = context;
+    _ref = ref;
 
     return Scaffold(
       appBar: AppBar(),
@@ -54,16 +59,14 @@ class LoginScreen extends StatelessWidget {
   ///
   void login() async {
     try {
-      print(emailController.text);
-      print(passwordController.text);
-
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
 
-      if (FirebaseAuth.instance.currentUser?.uid != '') {
-        print(FirebaseAuth.instance.currentUser?.uid);
+      if (FirebaseAuth.instance.currentUser != null) {
+        final loginViewModel = _ref.watch(loginProvider.notifier);
+        loginViewModel.setLoginUid(uid: FirebaseAuth.instance.currentUser!.uid);
 
         Navigator.pushNamed(_context, '/home');
       }
