@@ -7,6 +7,7 @@ import 'firebase_options.dart';
 import 'login_screen.dart';
 
 import 'screens/home_screen.dart';
+import 'screens/schedule_input_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (context) => LoginScreen(),
         '/home': (context) => HomeScreen(),
+        '/input': (context) => ScheduleInputScreen(),
       },
       initialRoute: '/',
       debugShowCheckedModeBanner: false,

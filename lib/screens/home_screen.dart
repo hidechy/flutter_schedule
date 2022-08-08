@@ -36,6 +36,12 @@ class HomeScreen extends ConsumerWidget {
         children: [
           const Text('HomeScreen'),
           Text(loginState),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/input');
+            },
+            child: const Text('input'),
+          ),
         ],
       ),
     );

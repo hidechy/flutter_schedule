@@ -71,7 +71,7 @@ class LoginScreen extends ConsumerWidget {
         Navigator.pushNamed(_context, '/home');
       }
     } catch (e) {
-      print(e);
+//      print(e);
     }
   }
 }
