@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../state/schedule_state.dart';
+
 import '../view_model/login_view_model.dart';
 import '../view_model/schedule_input_view_model.dart';
-
-import '../state/schedule_input_state.dart';
 
 import 'home_screen.dart';
 
@@ -133,7 +133,7 @@ class ScheduleInputScreen extends ConsumerWidget {
                   var exDate0 = exDate[0].split('-');
                   var exDate1 = exDate[1].split(':');
 
-                  var param = ScheduleInputState(
+                  var param = ScheduleState(
                     userUid: loginState,
                     date: selectedDateTime.toString(),
                     year: exDate0[0],

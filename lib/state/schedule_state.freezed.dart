@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'schedule_input_state.dart';
+part of 'schedule_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ScheduleInputState {
+mixin _$ScheduleState {
   String get userUid => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   String get year => throw _privateConstructorUsedError;
@@ -28,15 +28,15 @@ mixin _$ScheduleInputState {
   String get where => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ScheduleInputStateCopyWith<ScheduleInputState> get copyWith =>
+  $ScheduleStateCopyWith<ScheduleState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ScheduleInputStateCopyWith<$Res> {
-  factory $ScheduleInputStateCopyWith(
-          ScheduleInputState value, $Res Function(ScheduleInputState) then) =
-      _$ScheduleInputStateCopyWithImpl<$Res>;
+abstract class $ScheduleStateCopyWith<$Res> {
+  factory $ScheduleStateCopyWith(
+          ScheduleState value, $Res Function(ScheduleState) then) =
+      _$ScheduleStateCopyWithImpl<$Res>;
   $Res call(
       {String userUid,
       String date,
@@ -51,13 +51,13 @@ abstract class $ScheduleInputStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ScheduleInputStateCopyWithImpl<$Res>
-    implements $ScheduleInputStateCopyWith<$Res> {
-  _$ScheduleInputStateCopyWithImpl(this._value, this._then);
+class _$ScheduleStateCopyWithImpl<$Res>
+    implements $ScheduleStateCopyWith<$Res> {
+  _$ScheduleStateCopyWithImpl(this._value, this._then);
 
-  final ScheduleInputState _value;
+  final ScheduleState _value;
   // ignore: unused_field
-  final $Res Function(ScheduleInputState) _then;
+  final $Res Function(ScheduleState) _then;
 
   @override
   $Res call({
@@ -118,11 +118,11 @@ class _$ScheduleInputStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_ScheduleInputStateCopyWith<$Res>
-    implements $ScheduleInputStateCopyWith<$Res> {
-  factory _$$_ScheduleInputStateCopyWith(_$_ScheduleInputState value,
-          $Res Function(_$_ScheduleInputState) then) =
-      __$$_ScheduleInputStateCopyWithImpl<$Res>;
+abstract class _$$_ScheduleStateCopyWith<$Res>
+    implements $ScheduleStateCopyWith<$Res> {
+  factory _$$_ScheduleStateCopyWith(
+          _$_ScheduleState value, $Res Function(_$_ScheduleState) then) =
+      __$$_ScheduleStateCopyWithImpl<$Res>;
   @override
   $Res call(
       {String userUid,
@@ -138,15 +138,15 @@ abstract class _$$_ScheduleInputStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ScheduleInputStateCopyWithImpl<$Res>
-    extends _$ScheduleInputStateCopyWithImpl<$Res>
-    implements _$$_ScheduleInputStateCopyWith<$Res> {
-  __$$_ScheduleInputStateCopyWithImpl(
-      _$_ScheduleInputState _value, $Res Function(_$_ScheduleInputState) _then)
-      : super(_value, (v) => _then(v as _$_ScheduleInputState));
+class __$$_ScheduleStateCopyWithImpl<$Res>
+    extends _$ScheduleStateCopyWithImpl<$Res>
+    implements _$$_ScheduleStateCopyWith<$Res> {
+  __$$_ScheduleStateCopyWithImpl(
+      _$_ScheduleState _value, $Res Function(_$_ScheduleState) _then)
+      : super(_value, (v) => _then(v as _$_ScheduleState));
 
   @override
-  _$_ScheduleInputState get _value => super._value as _$_ScheduleInputState;
+  _$_ScheduleState get _value => super._value as _$_ScheduleState;
 
   @override
   $Res call({
@@ -161,7 +161,7 @@ class __$$_ScheduleInputStateCopyWithImpl<$Res>
     Object? what = freezed,
     Object? where = freezed,
   }) {
-    return _then(_$_ScheduleInputState(
+    return _then(_$_ScheduleState(
       userUid: userUid == freezed
           ? _value.userUid
           : userUid // ignore: cast_nullable_to_non_nullable
@@ -208,8 +208,8 @@ class __$$_ScheduleInputStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ScheduleInputState implements _ScheduleInputState {
-  const _$_ScheduleInputState(
+class _$_ScheduleState implements _ScheduleState {
+  const _$_ScheduleState(
       {required this.userUid,
       required this.date,
       required this.year,
@@ -244,14 +244,14 @@ class _$_ScheduleInputState implements _ScheduleInputState {
 
   @override
   String toString() {
-    return 'ScheduleInputState(userUid: $userUid, date: $date, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, second: $second, what: $what, where: $where)';
+    return 'ScheduleState(userUid: $userUid, date: $date, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, second: $second, what: $what, where: $where)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ScheduleInputState &&
+            other is _$_ScheduleState &&
             const DeepCollectionEquality().equals(other.userUid, userUid) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.year, year) &&
@@ -280,13 +280,12 @@ class _$_ScheduleInputState implements _ScheduleInputState {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ScheduleInputStateCopyWith<_$_ScheduleInputState> get copyWith =>
-      __$$_ScheduleInputStateCopyWithImpl<_$_ScheduleInputState>(
-          this, _$identity);
+  _$$_ScheduleStateCopyWith<_$_ScheduleState> get copyWith =>
+      __$$_ScheduleStateCopyWithImpl<_$_ScheduleState>(this, _$identity);
 }
 
-abstract class _ScheduleInputState implements ScheduleInputState {
-  const factory _ScheduleInputState(
+abstract class _ScheduleState implements ScheduleState {
+  const factory _ScheduleState(
       {required final String userUid,
       required final String date,
       required final String year,
@@ -296,7 +295,7 @@ abstract class _ScheduleInputState implements ScheduleInputState {
       required final String minute,
       required final String second,
       required final String what,
-      required final String where}) = _$_ScheduleInputState;
+      required final String where}) = _$_ScheduleState;
 
   @override
   String get userUid;
@@ -320,6 +319,6 @@ abstract class _ScheduleInputState implements ScheduleInputState {
   String get where;
   @override
   @JsonKey(ignore: true)
-  _$$_ScheduleInputStateCopyWith<_$_ScheduleInputState> get copyWith =>
+  _$$_ScheduleStateCopyWith<_$_ScheduleState> get copyWith =>
       throw _privateConstructorUsedError;
 }

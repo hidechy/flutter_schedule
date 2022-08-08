@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'schedule_input_state.freezed.dart';
+part 'schedule_state.freezed.dart';
 
 @freezed
-class ScheduleInputState with _$ScheduleInputState {
-  const factory ScheduleInputState({
+class ScheduleState with _$ScheduleState {
+  const factory ScheduleState({
     required String userUid,
     required String date,
     required String year,
@@ -15,5 +15,5 @@ class ScheduleInputState with _$ScheduleInputState {
     required String second,
     required String what,
     required String where,
-  }) = _ScheduleInputState;
+  }) = _ScheduleState;
 }
