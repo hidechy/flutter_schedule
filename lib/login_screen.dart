@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'view_model/login_view_model.dart';
 
+import 'utility/utility.dart';
+
 class LoginScreen extends ConsumerWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -19,6 +21,8 @@ class LoginScreen extends ConsumerWidget {
   late BuildContext _context;
   late WidgetRef _ref;
 
+  Utility _utility = Utility();
+
   ///
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -26,32 +30,41 @@ class LoginScreen extends ConsumerWidget {
     _ref = ref;
 
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(hintText: 'enter email'),
-              onChanged: (text) {},
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          _utility.getBackGround(),
+          Container(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 100),
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(hintText: 'enter email'),
+                  onChanged: (text) {},
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(hintText: 'enter password'),
+                  onChanged: (text) {},
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.pinkAccent.withOpacity(0.3),
+                  ),
+                  onPressed: () {
+                    login();
+                  },
+                  child: const Text('LOGIN'),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(hintText: 'enter password'),
-              onChanged: (text) {},
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                login();
-              },
-              child: const Text('LOGIN'),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

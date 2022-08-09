@@ -29,6 +29,8 @@ dependencies:
   freezed: ^2.1.0+1
   json_serializable: ^6.3.1
   flutter_slidable: ^2.0.0
+  flutter_launcher_icons: ^0.10.0
+  flutter_native_splash: ^2.2.7
 
 dev_dependencies:
   flutter_test:
@@ -39,3 +41,18 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/images/
+
+flutter_native_splash:
+  image: "assets/images/launcher.png"
+  color: "ffffff"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ic_launcher.png"
+
+  adaptive_icon_background: "#212121"
+  adaptive_icon_foreground: "assets/images/ic_launcher.png"

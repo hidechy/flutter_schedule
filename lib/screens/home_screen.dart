@@ -9,11 +9,16 @@ import '../view_model/login_view_model.dart';
 import '../view_model/schedule_delete_view_model.dart';
 import '../view_model/schedule_get_view_model.dart';
 
+import '../utility/utility.dart';
+
 class HomeScreen extends ConsumerWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   late WidgetRef _ref;
 
+  Utility _utility = Utility();
+
+  ///
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _ref = ref;
@@ -24,6 +29,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        title: Text('Schedule'),
         leading: GestureDetector(
           onTap: () async {
             await FirebaseAuth.instance.signOut();
@@ -34,83 +40,86 @@ class HomeScreen extends ConsumerWidget {
           },
           child: const Icon(Icons.close),
         ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            alignment: Alignment.topRight,
-            child: Text(loginState),
+        actions: [
+          IconButton(
+            onPressed: () {
+              ref.watch(scheduleGetAllProvider.notifier).getAll();
+            },
+            icon: const Icon(Icons.refresh),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ],
+      ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          _utility.getBackGround(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      ref.watch(scheduleGetAllProvider.notifier).getAll();
-                    },
-                    icon: const Icon(Icons.refresh),
-                  ),
                   IconButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/input');
                     },
                     icon: const Icon(Icons.input),
                   ),
+                  Text(loginState),
                 ],
               ),
-            ],
-          ),
-          Divider(color: Colors.white),
-          Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) {
-                var exDate = scheduleGetAllState[index].date.split(' ');
-                var exDate1 = exDate[1].split(':');
-                var hour = exDate1[0];
-                var minute = exDate1[1];
-                var dispDate = '${exDate[0]} $hour:$minute';
+              const Divider(color: Colors.white),
+              Expanded(
+                child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    var exDate = scheduleGetAllState[index].date.split(' ');
+                    var exDate1 = exDate[1].split(':');
+                    var hour = exDate1[0];
+                    var minute = exDate1[1];
+                    var dispDate = '${exDate[0]} $hour:$minute';
 
-                return Slidable(
-                  endActionPane: ActionPane(
-                    extentRatio: 0.2,
-                    motion: const ScrollMotion(),
-                    children: [
-                      SlidableAction(
-                        onPressed: (context) {
-                          ref
-                              .watch(scheduleDeleteProvider.notifier)
-                              .delete(param: scheduleGetAllState[index]);
+                    return Slidable(
+                      endActionPane: ActionPane(
+                        extentRatio: 0.2,
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              ref
+                                  .watch(scheduleDeleteProvider.notifier)
+                                  .delete(param: scheduleGetAllState[index]);
 
-                          ref.watch(scheduleGetAllProvider.notifier).getAll();
-                        },
-                        backgroundColor: const Color(0xFF0392CF),
-                        foregroundColor: Colors.white,
-                        icon: Icons.delete,
-                        label: 'delete',
+                              ref
+                                  .watch(scheduleGetAllProvider.notifier)
+                                  .getAll();
+                            },
+                            backgroundColor: const Color(0xFF0392CF),
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: 'delete',
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: ListTile(
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(dispDate),
-                        Text(scheduleGetAllState[index].what),
-                        Text(scheduleGetAllState[index].where),
-                      ],
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const Divider(
-                color: Colors.white,
+                      child: Card(
+                        color: Colors.black.withOpacity(0.3),
+                        child: ListTile(
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(dispDate),
+                              Text(scheduleGetAllState[index].what),
+                              Text(scheduleGetAllState[index].where),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) => Container(),
+                  itemCount: scheduleGetAllState.length,
+                ),
               ),
-              itemCount: scheduleGetAllState.length,
-            ),
+            ],
           ),
         ],
       ),
