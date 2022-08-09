@@ -4,19 +4,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:schedule/screens/schedule_edit_screen.dart';
 
 import '../view_model/login_view_model.dart';
 import '../view_model/schedule_delete_view_model.dart';
 import '../view_model/schedule_get_view_model.dart';
 
 import '../utility/utility.dart';
+import '../view_model/schedule_input_view_model.dart';
 
 class HomeScreen extends ConsumerWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   late WidgetRef _ref;
 
-  Utility _utility = Utility();
+  final Utility _utility = Utility();
 
   ///
   @override
@@ -29,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Schedule'),
+        title: const Text('Schedule'),
         leading: GestureDetector(
           onTap: () async {
             await FirebaseAuth.instance.signOut();
@@ -56,6 +58,15 @@ class HomeScreen extends ConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Container(
+                width: double.infinity,
+                alignment: Alignment.topRight,
+                padding: EdgeInsets.all(2),
+                child: Text('Now: ${DateTime.now().toString().split('.')[0]}'),
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent.withOpacity(0.3),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -73,16 +84,43 @@ class HomeScreen extends ConsumerWidget {
                 child: ListView.separated(
                   itemBuilder: (context, index) {
                     var exDate = scheduleGetAllState[index].date.split(' ');
+
+                    var exDate0 = exDate[0].split('-');
+                    var year = exDate0[0];
+                    var month = exDate0[1];
+                    var day = exDate0[2];
+
                     var exDate1 = exDate[1].split(':');
                     var hour = exDate1[0];
                     var minute = exDate1[1];
-                    var dispDate = '${exDate[0]} $hour:$minute';
 
                     return Slidable(
                       endActionPane: ActionPane(
-                        extentRatio: 0.2,
+                        extentRatio: 0.4,
                         motion: const ScrollMotion(),
                         children: [
+                          SlidableAction(
+                            onPressed: (context) {
+                              ref
+                                  .watch(selectDateProvider.notifier)
+                                  .setSelectDate(
+                                    date: scheduleGetAllState[index].date,
+                                  );
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ScheduleEditScreen(
+                                    state: scheduleGetAllState[index],
+                                  ),
+                                ),
+                              );
+                            },
+                            backgroundColor: const Color(0xFF7BC043),
+                            foregroundColor: Colors.white,
+                            icon: Icons.edit,
+                            label: 'edit',
+                          ),
                           SlidableAction(
                             onPressed: (context) {
                               ref
@@ -103,13 +141,35 @@ class HomeScreen extends ConsumerWidget {
                       child: Card(
                         color: Colors.black.withOpacity(0.3),
                         child: ListTile(
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(dispDate),
-                              Text(scheduleGetAllState[index].what),
-                              Text(scheduleGetAllState[index].where),
-                            ],
+                          leading: Container(
+                            padding: const EdgeInsets.only(
+                              top: 5,
+                              right: 5,
+                              left: 5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.greenAccent.withOpacity(0.3),
+                            ),
+                            child: DefaultTextStyle(
+                              style: TextStyle(fontSize: 12),
+                              child: Column(
+                                children: [
+                                  Text(year),
+                                  Text('$month-$day'),
+                                  Text('$hour:$minute'),
+                                ],
+                              ),
+                            ),
+                          ),
+                          title: DefaultTextStyle(
+                            style: const TextStyle(fontSize: 12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(scheduleGetAllState[index].what),
+                                Text(scheduleGetAllState[index].where),
+                              ],
+                            ),
                           ),
                         ),
                       ),

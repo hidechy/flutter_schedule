@@ -21,7 +21,7 @@ class LoginScreen extends ConsumerWidget {
   late BuildContext _context;
   late WidgetRef _ref;
 
-  Utility _utility = Utility();
+  final Utility _utility = Utility();
 
   ///
   @override
@@ -39,7 +39,7 @@ class LoginScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 TextField(
                   controller: emailController,
                   decoration: const InputDecoration(hintText: 'enter email'),

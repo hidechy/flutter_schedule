@@ -1,25 +1,32 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:schedule/state/schedule_state.dart';
+
+import '../utility/utility.dart';
+
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import '../state/schedule_state.dart';
 
-import '../utility/utility.dart';
 import '../view_model/login_view_model.dart';
 import '../view_model/schedule_get_view_model.dart';
 import '../view_model/schedule_input_view_model.dart';
 
+import '../view_model/schedule_update_view_model.dart';
 import 'home_screen.dart';
 
-class ScheduleInputScreen extends ConsumerWidget {
-  ScheduleInputScreen({Key? key}) : super(key: key);
+class ScheduleEditScreen extends ConsumerWidget {
+  ScheduleEditScreen({Key? key, required this.state}) : super(key: key);
+
+  final ScheduleState state;
 
   final TextEditingController _whereTextController = TextEditingController();
   final TextEditingController _whatTextController = TextEditingController();
 
   DateTime selectedDateTime = DateTime.now();
+  DateTime selectedDateTime2 = DateTime.now();
 
   final Utility _utility = Utility();
 
@@ -28,14 +35,16 @@ class ScheduleInputScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final loginState = ref.watch(loginProvider);
 
+    selectedDateTime = DateTime.parse(state.date);
+
     final selectDateState = ref.watch(selectDateProvider);
-    if (selectDateState != '') {
-      selectedDateTime = DateTime.parse(selectDateState);
-    }
+
+    _whatTextController.text = state.what;
+    _whereTextController.text = state.where;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Schedule Input'),
+        title: const Text('Schedule Update'),
       ),
       body: Stack(
         fit: StackFit.expand,
@@ -74,13 +83,13 @@ class ScheduleInputScreen extends ConsumerWidget {
                                     context,
                                     showTitleActions: true,
                                     onConfirm: (date) {
-                                      selectedDateTime = date;
+                                      selectedDateTime2 = date;
 
                                       ref
                                           .watch(selectDateProvider.notifier)
                                           .setSelectDate(date: date.toString());
                                     },
-                                    currentTime: DateTime.now(),
+                                    currentTime: DateTime.parse(state.date),
                                   );
                                 },
                                 child: const Text('When do you do ?'),
@@ -143,14 +152,15 @@ class ScheduleInputScreen extends ConsumerWidget {
                         ),
                         onPressed: () {
                           //-------------------------------------------//
-                          var exDate = selectedDateTime.toString().split(' ');
+
+                          var exDate = selectedDateTime2.toString().split(' ');
                           var exDate0 = exDate[0].split('-');
                           var exDate1 = exDate[1].split(':');
 
                           var param = ScheduleState(
-                            id: '',
+                            id: state.id,
                             userUid: loginState,
-                            date: selectedDateTime.toString(),
+                            date: selectedDateTime2.toString(),
                             year: exDate0[0],
                             month: exDate0[1],
                             day: exDate0[2],
@@ -162,8 +172,8 @@ class ScheduleInputScreen extends ConsumerWidget {
                           );
 
                           ref
-                              .watch(scheduleInputProvider.notifier)
-                              .input(param: param);
+                              .watch(scheduleUpdateProvider.notifier)
+                              .update(param: param);
                           //-------------------------------------------//
 
                           //-------------------------------------------//
