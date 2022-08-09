@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ScheduleState {
+  String get id => throw _privateConstructorUsedError;
   String get userUid => throw _privateConstructorUsedError;
   String get date => throw _privateConstructorUsedError;
   String get year => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $ScheduleStateCopyWith<$Res> {
           ScheduleState value, $Res Function(ScheduleState) then) =
       _$ScheduleStateCopyWithImpl<$Res>;
   $Res call(
-      {String userUid,
+      {String id,
+      String userUid,
       String date,
       String year,
       String month,
@@ -61,6 +63,7 @@ class _$ScheduleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? userUid = freezed,
     Object? date = freezed,
     Object? year = freezed,
@@ -73,6 +76,10 @@ class _$ScheduleStateCopyWithImpl<$Res>
     Object? where = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       userUid: userUid == freezed
           ? _value.userUid
           : userUid // ignore: cast_nullable_to_non_nullable
@@ -125,7 +132,8 @@ abstract class _$$_ScheduleStateCopyWith<$Res>
       __$$_ScheduleStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String userUid,
+      {String id,
+      String userUid,
       String date,
       String year,
       String month,
@@ -150,6 +158,7 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? userUid = freezed,
     Object? date = freezed,
     Object? year = freezed,
@@ -162,6 +171,10 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
     Object? where = freezed,
   }) {
     return _then(_$_ScheduleState(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       userUid: userUid == freezed
           ? _value.userUid
           : userUid // ignore: cast_nullable_to_non_nullable
@@ -210,7 +223,8 @@ class __$$_ScheduleStateCopyWithImpl<$Res>
 
 class _$_ScheduleState implements _ScheduleState {
   const _$_ScheduleState(
-      {required this.userUid,
+      {required this.id,
+      required this.userUid,
       required this.date,
       required this.year,
       required this.month,
@@ -221,6 +235,8 @@ class _$_ScheduleState implements _ScheduleState {
       required this.what,
       required this.where});
 
+  @override
+  final String id;
   @override
   final String userUid;
   @override
@@ -244,7 +260,7 @@ class _$_ScheduleState implements _ScheduleState {
 
   @override
   String toString() {
-    return 'ScheduleState(userUid: $userUid, date: $date, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, second: $second, what: $what, where: $where)';
+    return 'ScheduleState(id: $id, userUid: $userUid, date: $date, year: $year, month: $month, day: $day, hour: $hour, minute: $minute, second: $second, what: $what, where: $where)';
   }
 
   @override
@@ -252,6 +268,7 @@ class _$_ScheduleState implements _ScheduleState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ScheduleState &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.userUid, userUid) &&
             const DeepCollectionEquality().equals(other.date, date) &&
             const DeepCollectionEquality().equals(other.year, year) &&
@@ -267,6 +284,7 @@ class _$_ScheduleState implements _ScheduleState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(userUid),
       const DeepCollectionEquality().hash(date),
       const DeepCollectionEquality().hash(year),
@@ -286,7 +304,8 @@ class _$_ScheduleState implements _ScheduleState {
 
 abstract class _ScheduleState implements ScheduleState {
   const factory _ScheduleState(
-      {required final String userUid,
+      {required final String id,
+      required final String userUid,
       required final String date,
       required final String year,
       required final String month,
@@ -297,6 +316,8 @@ abstract class _ScheduleState implements ScheduleState {
       required final String what,
       required final String where}) = _$_ScheduleState;
 
+  @override
+  String get id;
   @override
   String get userUid;
   @override

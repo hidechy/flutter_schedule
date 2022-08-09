@@ -65,8 +65,9 @@ class LoginScreen extends ConsumerWidget {
       );
 
       if (FirebaseAuth.instance.currentUser != null) {
-        final loginViewModel = _ref.watch(loginProvider.notifier);
-        loginViewModel.setLoginUid(uid: FirebaseAuth.instance.currentUser!.uid);
+        _ref
+            .watch(loginProvider.notifier)
+            .setLoginUid(uid: FirebaseAuth.instance.currentUser!.uid);
 
         Navigator.pushNamed(_context, '/home');
       }

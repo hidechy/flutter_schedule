@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../state/schedule_state.dart';
 
 import '../view_model/login_view_model.dart';
+import '../view_model/schedule_get_view_model.dart';
 import '../view_model/schedule_input_view_model.dart';
 
 import 'home_screen.dart';
@@ -27,7 +28,6 @@ class ScheduleInputScreen extends ConsumerWidget {
     if (selectDateState != '') {
       selectedDateTime = DateTime.parse(selectDateState);
     }
-    final selectDateViewModel = ref.watch(selectDateProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(),
@@ -63,8 +63,10 @@ class ScheduleInputScreen extends ConsumerWidget {
                             showTitleActions: true,
                             onConfirm: (date) {
                               selectedDateTime = date;
-                              selectDateViewModel.setSelectDate(
-                                  date: date.toString());
+
+                              ref
+                                  .watch(selectDateProvider.notifier)
+                                  .setSelectDate(date: date.toString());
                             },
                             currentTime: DateTime.now(),
                           );
@@ -134,6 +136,7 @@ class ScheduleInputScreen extends ConsumerWidget {
                   var exDate1 = exDate[1].split(':');
 
                   var param = ScheduleState(
+                    id: '',
                     userUid: loginState,
                     date: selectedDateTime.toString(),
                     year: exDate0[0],
@@ -146,10 +149,7 @@ class ScheduleInputScreen extends ConsumerWidget {
                     where: _whereTextController.text,
                   );
 
-                  final scheduleInputViewModel =
-                      ref.watch(scheduleInputProvider.notifier);
-
-                  scheduleInputViewModel.input(param: param);
+                  ref.watch(scheduleInputProvider.notifier).input(param: param);
                   //-------------------------------------------//
 
                   //-------------------------------------------//
@@ -167,6 +167,8 @@ class ScheduleInputScreen extends ConsumerWidget {
                     ),
                   );
                   //-------------------------------------------//
+
+                  ref.watch(scheduleGetAllProvider.notifier).getAll();
                 },
                 child: const Text('input'),
               ),

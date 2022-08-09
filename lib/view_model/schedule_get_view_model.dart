@@ -22,6 +22,7 @@ class ScheduleGetAllStateNotifier extends StateNotifier<List<ScheduleState>> {
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
       return ScheduleState(
+        id: document.id,
         userUid: data['userUid'],
         date: data['date'],
         year: data['year'],
