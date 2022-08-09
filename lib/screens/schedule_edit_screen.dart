@@ -153,11 +153,12 @@ class ScheduleEditScreen extends ConsumerWidget {
                         onPressed: () {
                           //-------------------------------------------//
 
-                          var exDate = selectedDateTime2.toString().split(' ');
-                          var exDate0 = exDate[0].split('-');
-                          var exDate1 = exDate[1].split(':');
+                          final exDate =
+                              selectedDateTime2.toString().split(' ');
+                          final exDate0 = exDate[0].split('-');
+                          final exDate1 = exDate[1].split(':');
 
-                          var param = ScheduleState(
+                          final param = ScheduleState(
                             id: state.id,
                             userUid: loginState,
                             date: selectedDateTime2.toString(),

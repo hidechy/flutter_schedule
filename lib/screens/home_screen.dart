@@ -61,11 +61,11 @@ class HomeScreen extends ConsumerWidget {
               Container(
                 width: double.infinity,
                 alignment: Alignment.topRight,
-                padding: EdgeInsets.all(2),
-                child: Text('Now: ${DateTime.now().toString().split('.')[0]}'),
+                padding: const EdgeInsets.all(2),
                 decoration: BoxDecoration(
                   color: Colors.greenAccent.withOpacity(0.3),
                 ),
+                child: Text('Now: ${DateTime.now().toString().split('.')[0]}'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,16 +83,23 @@ class HomeScreen extends ConsumerWidget {
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (context, index) {
-                    var exDate = scheduleGetAllState[index].date.split(' ');
+                    final exDate = scheduleGetAllState[index].date.split(' ');
 
-                    var exDate0 = exDate[0].split('-');
-                    var year = exDate0[0];
-                    var month = exDate0[1];
-                    var day = exDate0[2];
+                    final exDate0 = exDate[0].split('-');
+                    final year = exDate0[0];
+                    final month = exDate0[1];
+                    final day = exDate0[2];
 
-                    var exDate1 = exDate[1].split(':');
-                    var hour = exDate1[0];
-                    var minute = exDate1[1];
+                    final exDate1 = exDate[1].split(':');
+                    final hour = exDate1[0];
+                    final minute = exDate1[1];
+
+                    final exNow = DateTime.now().toString().split(' ');
+
+                    final cardColor = (DateTime.parse(exNow[0])
+                            .isAfter(DateTime.parse(exDate[0])))
+                        ? Colors.redAccent.withOpacity(0.3)
+                        : Colors.black.withOpacity(0.3);
 
                     return Slidable(
                       endActionPane: ActionPane(
@@ -139,7 +146,7 @@ class HomeScreen extends ConsumerWidget {
                         ],
                       ),
                       child: Card(
-                        color: Colors.black.withOpacity(0.3),
+                        color: cardColor,
                         child: ListTile(
                           leading: Container(
                             padding: const EdgeInsets.only(
@@ -151,7 +158,7 @@ class HomeScreen extends ConsumerWidget {
                               color: Colors.greenAccent.withOpacity(0.3),
                             ),
                             child: DefaultTextStyle(
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                               child: Column(
                                 children: [
                                   Text(year),
